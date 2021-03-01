@@ -214,3 +214,25 @@ class CirclePauseBtn {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    cpb : CirclePauseBtn = new CirclePauseBtn()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.cpb.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.cpb.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.cpb.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}

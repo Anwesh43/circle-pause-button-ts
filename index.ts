@@ -1,10 +1,10 @@
 const w : number = window.innerWidth 
 const h : number = window.innerHeight
-const parts : number = 3
+const parts : number = 4
 const scGap : number = 0.02 / parts  
 const strokeFactor : number = 90 
 const backColor : string = "#bdbdbd"
-const sizeFactor : number = 2.9 
+const sizeFactor : number = 12.9 
 const colors : Array<string> = [
     "#1abc9c",
     "#2980b9",
@@ -13,7 +13,7 @@ const colors : Array<string> = [
     "#c0392b"
 ]
 const delay : number = 20 
-const gapFactor : number = 8.9 
+const gapFactor : number = 3.2
 
 class ScaleUtil {
 
@@ -55,13 +55,13 @@ class DrawingUtil {
         context.save()
         context.translate(w / 2, h / 2)
         context.globalAlpha = 1 - sf3 
+        DrawingUtil.drawCircle(context, 0, 0, size * sf1)
         for (var j = 0; j < 2; j++) {
             context.save()
             context.translate(-gap / 2 + gap * j, 0)
             DrawingUtil.drawLine(context, 0, -size * sf2 * 0.66, 0, size * sf2 * 0.66)
             context.restore()
         }
-        DrawingUtil.drawCircle(context, 0, 0, size * sf1)
         context.restore()
         context.globalAlpha = 1
     }
